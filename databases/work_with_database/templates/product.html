@@ -5,7 +5,19 @@
 {% block content %}
     <div class="container">
         <div class="header">
-            <h1>Телефон</h1>
+            {% for prod in product %}
+            <h1>{{ prod.name }}</h1>
+            <ul>
+                <li>Стоимость: {{prod.price}}р</li>
+                <li>Дата релиза: {{prod.release_date}}</li>
+                {% if prod.lte_exists == True %}
+                <li>LTE: Есть</li>
+                {% else %}
+                <li>LTE: Нет</li>
+                {% endif %}
+                <img src="{{prod.image}}">
+            {% endfor %}
+            </ul>
         </div>
         <div class="content">
 

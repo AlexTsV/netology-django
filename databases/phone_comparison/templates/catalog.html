@@ -6,6 +6,60 @@
     <div class="container">
         <div class="header">
             <h1>Сравнение телефонов</h1>
+            <table style="margin:left; width:50%; height:100%;">
+			  <tr>
+                  <td><b>Модель:</b></td>
+			    {% for phone in phones %}
+                  <td><b>{{ phone.model }}</b></td>
+			    {% endfor %}
+			  </tr>
+			  <tr>
+    			<td>Производитель:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.manufacturer }}</td>
+			    {% endfor %}
+			  </tr>
+			  <tr>
+			  <tr>
+    			<td>Цена:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.price }}</td>
+			    {% endfor %}
+			  </tr>
+    			<td>Операционная система:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.OS }}</td>
+			    {% endfor %}
+			  </tr>
+			  <tr>
+    			<td>Разрещение экрана:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.screen }}</td>
+			    {% endfor %}
+			  </tr>
+			  <tr>
+    			<td>Камера:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.camera }}</td>
+			    {% endfor %}
+			  </tr>
+			  <tr>
+    			<td>Оперативная память:</td>
+			    {% for phone in phones %}
+			    <td>{{ phone.RAM }}</td>
+			    {% endfor %}
+			  </tr>
+              <tr>
+    			<td>Дополнительно:</td>
+			    {% for opt in optionals %}
+				{% for i in opt %}
+			    <td>{{ i.other }}</td>
+				{% endfor %}
+			    {% endfor %}
+			  </tr>
+			</table>
+
         </div>
     </div>
 {% endblock %}
+

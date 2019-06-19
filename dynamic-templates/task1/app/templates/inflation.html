@@ -34,35 +34,34 @@
                 <th>Октябрь</th>
                 <th>Ноябрь</th>
                 <th>Декабрь</th>
-                <th BGCOLOR="#808080"> Всего</th>
+                <th BGCOLOR="#808080">Всего</th>
             </tr>
             </thead>
             <tbody>
             {% for info in inflation%}
             <tr>
-                <td>{{ info.Year }}</td>
-                {%if info.Jan < 0 %}
-                    <td bgcolor="#008000">{{ info.Jan }}</td>
-                {%elif 1 <= info.Jan <= 2 %}
-                    <td bgcolor="#CD5C5C">{{ info.Jan }}</td>
-                {%elif 2 <= info.Jan <= 5 %}
-                    <td bgcolor="#FF0000">{{ info.Jan }}</td>
-                {%elif info.Jan > 5 %}
-                    <td bgcolor="#800000">{{ info.Jan }}</td>
-                {%endif%}
-                <td>{{ info.Jan }}</td>
-                <td>{{ info.Feb }}</td>
-                <td>{{ info.Mar }}</td>
-                <td>{{ info.Apr }}</td>
-                <td>{{ info.May }}</td>
-                <td>{{ info.Jun }}</td>
-                <td>{{ info.Jul }}</td>
-                <td>{{ info.Aug }}</td>
-                <td>{{ info.Sep }}</td>
-                <td>{{ info.Oct }}</td>
-                <td>{{ info.Nov }}</td>
-                <td>{{ info.Dec }}</td>
-                <td BGCOLOR="#808080">{{ info.Sum }}</td>
+                {% for i in info.values %}
+                {% if i == info.Sum %}
+                <td BGCOLOR="#808080">{{ i }}</td>
+                {% else %}
+                {% if i < 0 %}
+                <td bgcolor="#008000">{{ i }}</td>
+                {% elif i > 1%}
+                {% if i < 2 %}
+                <td bgcolor="#F08080">{{ i }}</td>
+                {% elif i > 2 and i < 5 %}
+                <td bgcolor="#FF0000">{{ i }}</td>
+                {% elif i > 5 %}
+                <td bgcolor="#8B0000">{{ i }}</td>
+                {% endif %}
+                {% elif i == '' %}
+                <td> - </td>
+                {% else %}
+                <td>{{ i }}</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
             </tr>
             {% endfor %}
             </tbody>
