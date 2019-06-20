@@ -2,11 +2,10 @@ from django.db import models
 
 
 class Article(models.Model):
-
     title = models.CharField(max_length=256, verbose_name='Название')
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
-    image = models.ImageField(null=True, blank=True, verbose_name='Изображение',)
+    image = models.ImageField(null=True, blank=True, verbose_name='Изображение', )
 
     class Meta:
         verbose_name = 'Статья'
@@ -16,3 +15,19 @@ class Article(models.Model):
         return self.title
 
 
+class Scope(models.Model):
+    topic = models.CharField(max_length=256, verbose_name='Название')
+    articles = models.ManyToManyField(Article, through='ArticleScope', related_name='scope')
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.topic
+
+
+class ArticleScope(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='Новости')
+    scope = models.ForeignKey(Scope, on_delete=models.CASCADE, verbose_name='Категории')
+    is_main = models.BooleanField(verbose_name='Основная')
