@@ -4,6 +4,7 @@ from .models import Phone, Samsung, Apple, Xiaomi
 
 def show_catalog(request):
     phones = Phone.objects.all()
+    print(phones)
     optionals = list()
     samsung = Samsung.objects.all()
     optionals.append(samsung)
@@ -14,8 +15,6 @@ def show_catalog(request):
     template = 'catalog.html'
     context = {'phones': phones,
                'optionals': optionals}
-    template = 'catalog.html'
-    context = {}
     return render(
         request,
         template,

@@ -12,7 +12,6 @@ def books_view(request):
 def sort_books_view(request, pub_date=None):
     template = 'books/books_list.html'
     books = Book.objects.all()
-
     context = {'books': books}
     if pub_date:
         books = Book.objects.all().filter(pub_date=pub_date)
