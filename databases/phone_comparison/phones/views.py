@@ -4,7 +4,6 @@ from .models import Phone, Samsung, Apple, Xiaomi
 
 def show_catalog(request):
     phones = Phone.objects.all()
-    print(phones)
     optionals = list()
     samsung = Samsung.objects.all()
     optionals.append(samsung)
