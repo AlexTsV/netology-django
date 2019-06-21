@@ -10,8 +10,8 @@ class Product(models.Model):
 
 
 class Review(models.Model):
-    text = models.TextField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.TextField(null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + self.text[:50]
