@@ -24,5 +24,17 @@
             <a href="/books/{{next_page}}/">{{next_page}}>></a>
             {% endif %}
         </div>
+                <h2><a href="{{ book.pub_date|date:'Y-m-d' }}/">{{ book.name }}</a></h2>
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.pub_date|date:"Y-m-d" }}</p>
+                {% endfor %}
+            </div>
+        </div>
+            {% if prev_page %}
+            <a href="/books/{{ prev_page }}"><<{{ prev_page }}</a>
+            {% endif %}
+            {% if next_page %}
+            <a href="/books/{{ next_page }}">{{ next_page }}>></a>
+            {% endif %}
     </div>
 {% endblock %}

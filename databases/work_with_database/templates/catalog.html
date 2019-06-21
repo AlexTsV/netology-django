@@ -22,7 +22,7 @@
                     <div class="col-sm">
                         <div style="width: 18rem;">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><h5>{{ phone.name }}</h5></li>
+                                <li class="list-group-item"><h5><a href="{{ phone.slug }}">{{ phone.name }}</a></h5></li>
                                 <li class="list-group-item">Стоимость: {{ phone.price }}</li>
                             </ul>
                             <img src="{{ phone.image }}" alt="{{ phone.name }}" style="height: 540px;">
