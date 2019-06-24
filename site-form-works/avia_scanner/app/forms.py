@@ -8,5 +8,9 @@ class SearchTicket(forms.Form):
     # Добавьте здесь поля, описанные в задании
     arrival = forms.CharField(widget=AjaxInputWidget('api/city_ajax', attrs={'class': 'inline right-margin'}),
                               label='Прибытие')
-    departure = forms.ChoiceField(choices=[(1, 'burger'), (2, 'pizza'), (3, 'taco')], label='Отправление')
+    cities = City.objects.all()
+    cities_choice = list()
+    for i in enumerate(cities):
+        cities_choice.append(i)
+    departure = forms.ChoiceField(choices=cities_choice, label='Отправление')
     date = forms.DateField(widget=SelectDateWidget, label='Дата')
