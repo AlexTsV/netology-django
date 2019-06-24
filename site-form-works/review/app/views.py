@@ -19,16 +19,22 @@ def product_list_view(request):
 def product_view(request, pk):
     template = 'app/product_detail.html'
     product = get_object_or_404(Product, id=pk)
-
+    reviews = Review.objects.all()
     form = ReviewForm
-    if request.method == 'POST':
-        # логика для добавления отзыва
-        review = request.POST.get('text')
-        Review(text=review).save()
-
     context = {
         'form': form,
-        'product': product
+        'product': product,
+        'reviews': reviews
     }
+    if pk in request.session['reviewed_products']:
+        context['is_review_exist'] = True
+    else:
+        if request.method == 'POST':
+            # логика для добавления отзыва
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review = Review(text=form.cleaned_data['text'])
+                review.save()
+                request.session['reviewed_products'] = pk
 
     return render(request, template, context)
