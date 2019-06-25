@@ -11,6 +11,10 @@ class Car(models.Model):
     def review_count(self):
         return Review.objects.filter(car=self).count()
 
+    class Meta:
+        verbose_name = 'машина'
+        verbose_name_plural = 'машины'
+
 
 class Review(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
@@ -19,4 +23,8 @@ class Review(models.Model):
 
     def __str__(self):
         return str(self.car) + ' ' + self.title
+
+    class Meta:
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'отзывы'
 
