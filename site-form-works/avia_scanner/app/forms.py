@@ -2,8 +2,6 @@ from django import forms
 from .widgets import AjaxInputWidget
 from django.forms.widgets import SelectDateWidget
 from .models import City
-import re
-from django.core.validators import RegexValidator
 
 
 class SearchTicket(forms.Form):
