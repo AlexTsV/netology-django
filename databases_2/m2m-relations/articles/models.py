@@ -5,7 +5,8 @@ class Article(models.Model):
     title = models.CharField(max_length=256, verbose_name='Название')
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
-    image = models.ImageField(null=True, blank=True, verbose_name='Изображение', )
+    image = models.ImageField(null=True, blank=True, verbose_name='Изображение')
+    article_scopes = models.ManyToManyField('Scope', through='ArticleScope')
 
     class Meta:
         verbose_name = 'Статья'
@@ -16,8 +17,8 @@ class Article(models.Model):
 
 
 class Scope(models.Model):
-    topic = models.CharField(max_length=256, verbose_name='Название')
-    articles = models.ManyToManyField(Article, through='ArticleScope', related_name='scope')
+    topic = models.CharField(max_length=128, verbose_name='Категория')
+    articles = models.ManyToManyField(Article, through='ArticleScope', related_name='scopes')
 
     class Meta:
         verbose_name = 'Категория'
@@ -28,6 +29,13 @@ class Scope(models.Model):
 
 
 class ArticleScope(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='Новости')
-    scope = models.ForeignKey(Scope, on_delete=models.CASCADE, verbose_name='Категории')
-    is_main = models.BooleanField(verbose_name='Основная')
+    scope = models.ForeignKey(Scope, on_delete=models.CASCADE, verbose_name='Раздел')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    is_main = models.BooleanField(verbose_name='Основной')
+
+    class Meta:
+        verbose_name = 'Тематика статьи'
+        verbose_name_plural = 'Тематика статьи'
+
+    def __str__(self):
+        return f'{self.article}_{self.scope}'

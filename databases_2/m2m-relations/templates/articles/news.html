@@ -13,8 +13,8 @@
           <a href="#">{{ article.title }}</a>
         </h4>
         <p class="card-text">{{ article.text }}</p>
-        <p>{{ article.scopes.all }}</p>
         {% for scope in article.scopes.all %}
+        {{scope.is_main}}
           <span class="badge {% if scope.is_main %}badge-primary{% else %}badge-secondary{% endif %}">{{ scope.topic }}</span>
         {% endfor %}
       </div>
