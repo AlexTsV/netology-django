@@ -11,10 +11,8 @@ def articles_list(request):
     # используйте этот параметр для упорядочивания результатов
     # https://docs.djangoproject.com/en/2.2/ref/models/querysets/#django.db.models.query.QuerySet.order_by
     ordering = '-published_at'
-    articles = Article.objects.order_by(ordering).prefetch_related('articles__set')
-    print(articles)
-    # articles = Article.objects.order_by(ordering).prefetch_related(
-        # Prefetch('scopes', queryset=ArticleScope.objects.select_related('topic').order_by('-is_main', '-topic')))
+    articles = Article.objects.order_by(ordering).prefetch_related(
+        Prefetch('scopes', queryset=ArticleScope.objects.all()))
     context['object_list'] = articles
 
     return render(request, template, context)
