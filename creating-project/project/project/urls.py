@@ -1,4 +1,4 @@
-"""app URL Configuration
+"""project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,12 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.http import HttpResponseRedirect
 from django.urls import path
-from table.views import view_table
+from map.views import get_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('table/', view_table),
-    path('', lambda x: HttpResponseRedirect('/table/')),
+    path('stations/', get_list, name="stations"),
 ]

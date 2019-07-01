@@ -1,5 +1,5 @@
 """
-WSGI config for cli_and_docs project.
+WSGI config for cli_and_docs project1.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
